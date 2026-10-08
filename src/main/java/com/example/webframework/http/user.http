@@ -1,0 +1,28 @@
+### 회원가입
+POST http://localhost:8080/user-account
+Content-Type: application/json
+
+{
+  "email": "123@naver.com",
+  "passwordHash": "1234",
+  "nickname": "테스터"
+}
+
+### 전체 조회
+GET http://localhost:8080/user-account
+
+### 단건 조회
+GET http://localhost:8080/user-account/test@example.com
+
+### 수정
+PATCH http://localhost:8080/user-account/update?email=123@naver.com
+Content-Type: application/json
+
+{
+  "email": "123@naver.com",
+  "nickname": "son123",
+  "passwordHash": "456"
+}
+
+### 삭제
+DELETE http://localhost:8080/user-account/delete?email=test@example.com

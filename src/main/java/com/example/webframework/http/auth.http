@@ -1,0 +1,12 @@
+### 로그인
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "password": "password123"
+}
+
+### 토큰 사용 예시
+GET http://localhost:8080/user-account
+Authorization: Bearer {{accessToken}}
