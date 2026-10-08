@@ -1,5 +1,6 @@
 package com.example.webframework.user;
 
+import com.example.webframework.user.dto.MeResponse;
 import com.example.webframework.user.dto.SignUpRequest;
 import com.example.webframework.user.dto.UserAccountResponse;
 import com.example.webframework.user.dto.UserAccountUpdateRequest;
@@ -24,6 +25,13 @@ public class UserAccountService {
     private final UserAccountRepository userAccountRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
+
+    public MeResponse me(Long accountId) {
+        UserAccount userAccount = userAccountRepository.findById(accountId)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.UNAUTHORIZED, "사용할 수 없는 계정입니다."));
+        return new MeResponse(userAccount.getId(), userAccount.getEmail(), userAccount.getNickname());
+    }
 
     public LoginResponse login(LoginRequest request) {
         UserAccount userAccount = userAccountRepository.findByEmail(request.email())

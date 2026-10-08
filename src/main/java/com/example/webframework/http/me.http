@@ -1,0 +1,17 @@
+### 로그인 - accessToken 쿠키 발급
+POST http://localhost:8080/user-account/login
+Content-Type: application/json
+
+{
+  "email": "test123@example.com",
+  "password": "12345678"
+}
+
+### 내 정보 조회
+# 위 로그인 요청으로 발급된 accessToken 쿠키가 자동으로 포함됩니다.
+GET http://localhost:8080/user-account/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3ZWJmcmFtZXdvcmstc2VydmVyIiwibmlja25hbWUiOiLshpDsnbQiLCJzdWIiOiIxMCIsImV4cCI6MTc5MTQzMzU4MSwiaWF0IjoxNzkxNDI5OTgxLCJ1c2VySWQiOjEwfQ.PLYX8OnbRnarFQ3bHeofm_b5-uNsQ1iK6I1bgqy3VZM	Thu
+Content-Type:application/json
+
+### 로그아웃
+POST http://localhost:8080/user-account/logout

@@ -5,6 +5,8 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +17,16 @@ import java.util.List;
 public class UserAccountController {
 
     private final UserAccountService userAccountService;
+
+    @GetMapping("/me")
+    public ResponseEntity<MeResponse> me(@AuthenticationPrincipal Jwt jwt) {
+        Long accountId = Long.valueOf(jwt.getSubject());
+
+        System.out.println("accountId: "+ accountId);
+
+        return ResponseEntity.ok()
+                .body(userAccountService.me(accountId));
+    }
 
     // Create
     @PostMapping("/signup")

@@ -7,7 +7,6 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.ResponseCookie;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -42,8 +41,4 @@ public class AuthController {
         return ResponseEntity.noContent().header("Set-Cookie", cookie.toString()).build();
     }
 
-    @GetMapping("/me")
-    public ResponseEntity<Void> me(Authentication authentication) {
-        return ResponseEntity.ok().build();
-    }
 }

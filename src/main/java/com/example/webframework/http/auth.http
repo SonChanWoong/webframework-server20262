@@ -7,6 +7,6 @@ Content-Type: application/json
   "password": "password123"
 }
 
-### 토큰 사용 예시
-GET http://localhost:8080/user-account
-Authorization: Bearer {{accessToken}}
+### 인증 상태 확인
+# 먼저 위 로그인 요청을 실행한 뒤, 같은 HTTP 클라이언트 세션에서 실행하세요.
+GET http://localhost:8080/user-account/me
